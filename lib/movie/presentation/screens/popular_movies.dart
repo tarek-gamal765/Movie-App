@@ -1,0 +1,48 @@
+import 'package:animate_do/animate_do.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/core/global/lib/presentation/common_widgets/bottom_sheet_content.dart';
+import 'package:movie_app/core/utils/app_constants.dart';
+import 'package:movie_app/core/utils/enums.dart';
+
+import '../blocs/movies_bloc.dart';
+import '../blocs/movies_state.dart';
+
+class PopularMoviesScreen extends StatelessWidget {
+  const PopularMoviesScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: BlocBuilder<MovieBloc, MoviesState>(builder: (context, state) {
+        if (state.popularMoviesStates == RequestStates.loading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state.popularMoviesStates == RequestStates.success) {
+          return FadeIn(
+            duration: const Duration(milliseconds: AppConstants.fadeDuration),
+            child: ListView.builder(
+              itemCount: state.popularMovies.length,
+              itemBuilder: (context, index) {
+                return BottomSheetContent(
+                  imageUrl: state.popularMovies[index].posterPath,
+                  title: state.popularMovies[index].title,
+                  overview: state.popularMovies[index].overview,
+                  releaseDate: state.popularMovies[index].releaseDate,
+                  voteAverage: state.popularMovies[index].voteAverage,
+                  isBottomSheet: false,
+                );
+              },
+            ),
+          );
+        } else {
+          return const Center(
+            child: Text('Loading data failed'),
+          );
+        }
+      }),
+    );
+  }
+}
