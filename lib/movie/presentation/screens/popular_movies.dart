@@ -52,11 +52,7 @@ class PopularMoviesScreen extends StatelessWidget {
                       releaseDate: state.popularMovies[index].releaseDate,
                       voteAverage: state.popularMovies[index].voteAverage,
                       isBottomSheet: false,
-<<<<<<< HEAD
                       color: AppColorsDark.lightBlackColor,
-=======
-                      color: AppColorsDark.darkGreyColor,
->>>>>>> 5ba464fe2721ac74d17081bb7d43ee350b399867
                     ),
                   ),
                 );
