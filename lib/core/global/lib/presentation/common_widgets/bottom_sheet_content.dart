@@ -10,6 +10,7 @@ class BottomSheetContent extends StatelessWidget {
   final String releaseDate;
   final double voteAverage;
   final bool isBottomSheet;
+  final Color color;
 
   const BottomSheetContent({
     Key? key,
@@ -19,11 +20,16 @@ class BottomSheetContent extends StatelessWidget {
     required this.releaseDate,
     required this.voteAverage,
     required this.isBottomSheet,
+    this.color = AppColorsDark.transparentColor,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(AppSize.s10),
+      ),
       padding: const EdgeInsets.only(
         top: AppSize.s10,
         bottom: AppSize.s10,

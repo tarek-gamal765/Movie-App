@@ -2,7 +2,9 @@ class AppStrings {
   static const String nowPlaying = 'NOW PLAYING';
   static const String detailsAndMore = 'Detail & More';
   static const String popular = 'Popular';
+  static const String popularMovies = 'Popular Movies';
   static const String topRated = 'Top Rated';
+  static const String topRatedMovies = 'Top Rated Movies';
   static const String seeMore = 'See More';
   static const String mdb = 'MDB';
   static const String movies = 'Movies';
