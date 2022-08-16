@@ -21,7 +21,7 @@ ThemeData darkTheme() => ThemeData(
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColorsDark.transparentColor,
         elevation: AppSize.s0,
-        centerTitle: true,
+        centerTitle: false,
         iconTheme: IconThemeData(
           size: AppSize.s20,
           color: AppColorsDark.whiteColor,

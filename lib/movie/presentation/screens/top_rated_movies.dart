@@ -4,7 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/global/lib/presentation/common_widgets/bottom_sheet_content.dart';
 import 'package:movie_app/core/utils/app_constants.dart';
 import 'package:movie_app/core/utils/enums.dart';
+import 'package:movie_app/core/utils/routes.dart';
 
+import '../../../core/global/styles/app_colors/app_colors_dark.dart';
+import '../../../core/utils/app_strings.dart';
+import '../../../core/utils/values_manager.dart';
 import '../blocs/movies_bloc.dart';
 import '../blocs/movies_state.dart';
 
@@ -14,7 +18,12 @@ class TopRatedMoviesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(
+          AppStrings.topRatedMovies,
+          style: Theme.of(context).textTheme.subtitle1,
+        ),
+      ),
       body: BlocBuilder<MovieBloc, MoviesState>(builder: (context, state) {
         if (state.topRatedMoviesStates == RequestStates.loading) {
           return const Center(
@@ -26,13 +35,26 @@ class TopRatedMoviesScreen extends StatelessWidget {
             child: ListView.builder(
               itemCount: state.topRatedMovies.length,
               itemBuilder: (context, index) {
-                return BottomSheetContent(
-                  imageUrl: state.topRatedMovies[index].posterPath,
-                  title: state.topRatedMovies[index].title,
-                  overview: state.topRatedMovies[index].overview,
-                  releaseDate: state.topRatedMovies[index].releaseDate,
-                  voteAverage: state.topRatedMovies[index].voteAverage,
-                  isBottomSheet: false,
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: AppPadding.p4,
+                    horizontal: AppPadding.p10,
+                  ),
+                  child: InkWell(
+                    onTap: () => Navigator.of(context).pushNamed(
+                      Routes.movieDetailsRoute,
+                      arguments: state.topRatedMovies[index].id,
+                    ),
+                    child: BottomSheetContent(
+                      imageUrl: state.topRatedMovies[index].posterPath,
+                      title: state.topRatedMovies[index].title,
+                      overview: state.topRatedMovies[index].overview,
+                      releaseDate: state.topRatedMovies[index].releaseDate,
+                      voteAverage: state.topRatedMovies[index].voteAverage,
+                      isBottomSheet: false,
+                      color: AppColorsDark.lightBlackColor,
+                    ),
+                  ),
                 );
               },
             ),

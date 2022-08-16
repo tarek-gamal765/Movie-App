@@ -17,14 +17,14 @@ class MainMoviesScreen extends StatelessWidget {
       child: Column(
         children: [
           const NowPlayingMoviesComponent(),
-          const SizedBox(height: AppSize.s20),
+          const SizedBox(height: AppSize.s8),
           SubTitleAndSeeMore(
             text: AppStrings.popular,
             onPressed: () =>
                 Navigator.of(context).pushNamed(Routes.popularMoviesRoute),
           ),
           const PopularMoviesComponent(),
-          const SizedBox(height: AppSize.s20),
+          const SizedBox(height: AppSize.s8),
           SubTitleAndSeeMore(
             text: AppStrings.topRated,
             onPressed: () =>
