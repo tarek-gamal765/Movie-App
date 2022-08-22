@@ -8,6 +8,7 @@ import 'package:movie_app/core/global/lib/presentation/common_widgets/loading_wi
 import 'package:movie_app/core/utils/app_strings.dart';
 import 'package:movie_app/core/utils/values_manager.dart';
 import '../../../core/utils/enums.dart';
+import '../../../core/utils/routes.dart';
 import '../../../core/utils/urls.dart';
 import '../blocs/movies_bloc.dart';
 import '../blocs/movies_state.dart';
@@ -35,12 +36,18 @@ class NowPlayingMoviesComponent<T> extends StatelessWidget {
                     onTap: () {
                       showBottomSheetDetails(
                         context: context,
-                        id: item.id,
-                        imageUrl: item.posterPath,
+                        imageUrl: Urls.imageUrl(item.posterPath),
                         title: item.title,
                         overview: item.overview,
                         releaseDate: item.releaseDate,
                         voteAverage: item.voteAverage,
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pushNamed(
+                            Routes.movieDetailsRoute,
+                            arguments: item.id,
+                          );
+                        },
                       );
 
                     },

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class RecommendationEntity extends Equatable {
+class RecommendationMovieEntity extends Equatable {
   final int id;
   final String? posterPath;
   final String overview;
@@ -9,7 +9,7 @@ class RecommendationEntity extends Equatable {
   final double voteAverage;
   final int voteCount;
 
-  const RecommendationEntity({
+  const RecommendationMovieEntity({
     required this.id,
     required this.posterPath,
     required this.overview,

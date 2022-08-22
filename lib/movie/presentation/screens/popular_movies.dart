@@ -1,14 +1,15 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/core/global/lib/presentation/common_widgets/bottom_sheet_content.dart';
 import 'package:movie_app/core/utils/app_constants.dart';
 import 'package:movie_app/core/utils/enums.dart';
 import 'package:movie_app/core/utils/values_manager.dart';
 
+import 'package:movie_app/core/global/lib/presentation/common_widgets/popular_and_top_rated_item.dart';
 import '../../../core/global/styles/app_colors/app_colors_dark.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../../core/utils/routes.dart';
+import '../../../core/utils/urls.dart';
 import '../blocs/movies_bloc.dart';
 import '../blocs/movies_state.dart';
 
@@ -41,17 +42,18 @@ class PopularMoviesScreen extends StatelessWidget {
                     horizontal: AppPadding.p10,
                   ),
                   child: InkWell(
-                    onTap: () => Navigator.of(context).pushNamed(
-                      Routes.movieDetailsRoute,
-                      arguments: state.topRatedMovies[index].id,
-                    ),
-                    child: BottomSheetContent(
-                      imageUrl: state.popularMovies[index].posterPath,
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                        Routes.movieDetailsRoute,
+                        arguments: state.popularMovies[index].id,
+                      );
+                    },
+                    child: PopularAndTopRatedItem(
+                      imageUrl: Urls.imageUrl(state.popularMovies[index].posterPath),
                       title: state.popularMovies[index].title,
                       overview: state.popularMovies[index].overview,
                       releaseDate: state.popularMovies[index].releaseDate,
                       voteAverage: state.popularMovies[index].voteAverage,
-                      isBottomSheet: false,
                       color: AppColorsDark.lightBlackColor,
                     ),
                   ),

@@ -26,7 +26,7 @@ class MovieDatabaseHelper {
 
   Future _onCreate(Database db, int version) async {
     await db.execute('''
-    CREATE TABLE ${AppStrings.dbTableName} (
+    CREATE TABLE ${AppStrings.movieDbTableName} (
       id INTEGER PRIMARY KEY,
       backdropPath TEXT,
       overview TEXT,
@@ -42,7 +42,7 @@ class MovieDatabaseHelper {
   Future<int> insertMovieToWatchlist(MovieTableModel movie) async {
     final db = await database;
     final result = await db!.insert(
-      AppStrings.dbTableName,
+      AppStrings.movieDbTableName,
       movie.toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
@@ -53,7 +53,7 @@ class MovieDatabaseHelper {
   Future<int> removeMovieFromWatchlist(MovieTableModel movie) async {
     final db = await database;
     return await db!.delete(
-      AppStrings.dbTableName,
+      AppStrings.movieDbTableName,
       where: 'id = ?',
       whereArgs: [movie.id],
     );
@@ -62,7 +62,7 @@ class MovieDatabaseHelper {
   Future<Map<String, dynamic>?> getMovieByIdFromWatchlist(int id) async {
     final db = await database;
     final result = await db!.query(
-      AppStrings.dbTableName,
+      AppStrings.movieDbTableName,
       where: 'id = ?',
       whereArgs: [id],
     );
@@ -76,7 +76,7 @@ class MovieDatabaseHelper {
   Future<List<Map<String, dynamic>>> getMoviesFromWatchlist() async {
     final db = await database;
     return await db!.query(
-      AppStrings.dbTableName,
+      AppStrings.movieDbTableName,
     );
   }
 }

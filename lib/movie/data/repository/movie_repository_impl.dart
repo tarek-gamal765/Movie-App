@@ -4,7 +4,7 @@ import 'package:movie_app/core/error/failure.dart';
 import 'package:movie_app/movie/data/models/movie_table_model.dart';
 import 'package:movie_app/movie/domain/entities/movie_details_entity.dart';
 import 'package:movie_app/movie/domain/entities/movie_entity.dart';
-import 'package:movie_app/movie/domain/entities/recommendation_entity.dart';
+import 'package:movie_app/movie/domain/entities/recommendation_movie_entity.dart';
 import 'package:movie_app/movie/domain/repository/movie_repository.dart';
 
 import '../data_source/movie_local_data_source/movie_local_data_source.dart';
@@ -66,7 +66,7 @@ class MovieRepositoryImpl implements MovieRepository {
   }
 
   @override
-  Future<Either<Failure, List<RecommendationEntity>>> getRecommendationMovies(
+  Future<Either<Failure, List<RecommendationMovieEntity>>> getRecommendationMovies(
       int movieId) async {
     final response =
         await _movieRemoteDataSource.getRecommendationMovies(movieId);

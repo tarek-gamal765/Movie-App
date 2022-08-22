@@ -18,24 +18,24 @@ class MovieTableModel extends MovieDetailsEntity {
   factory MovieTableModel.formJson(Map<String, dynamic> json) =>
       MovieTableModel(
         id: json['id'],
-        backdropPath: json[AppStrings.movieBackdropPathTable],
-        overview: json[AppStrings.movieOverviewTable],
-        posterPath: json[AppStrings.moviePosterPathTable],
-        title: json[AppStrings.movieTitleTable],
-        releaseDate: json[AppStrings.movieReleaseDateTable],
-        voteAverage: json[AppStrings.movieVoteAverageTable].toDouble(),
-        voteCount: json[AppStrings.movieVoteCountTable],
+        backdropPath: json[AppStrings.backdropPathTable],
+        overview: json[AppStrings.overviewTable],
+        posterPath: json[AppStrings.posterPathTable],
+        title: json[AppStrings.titleTable],
+        releaseDate: json[AppStrings.releaseDateTable],
+        voteAverage: json[AppStrings.voteAverageTable].toDouble(),
+        voteCount: json[AppStrings.voteCountTable],
       );
 
   Map<String, dynamic> toJson() => {
-        AppStrings.movieIdTable: id,
-        AppStrings.movieBackdropPathTable: backdropPath,
-        AppStrings.movieOverviewTable: overview,
-        AppStrings.moviePosterPathTable: posterPath,
-        AppStrings.movieTitleTable: title,
-        AppStrings.movieReleaseDateTable: releaseDate,
-        AppStrings.movieVoteAverageTable: voteAverage,
-        AppStrings.movieVoteCountTable: voteCount,
+        AppStrings.idTable: id,
+        AppStrings.backdropPathTable: backdropPath,
+        AppStrings.overviewTable: overview,
+        AppStrings.posterPathTable: posterPath,
+        AppStrings.titleTable: title,
+        AppStrings.releaseDateTable: releaseDate,
+        AppStrings.voteAverageTable: voteAverage,
+        AppStrings.voteCountTable: voteCount,
       };
 
   factory MovieTableModel.formEntity(MovieDetailsEntity movieDetails) =>

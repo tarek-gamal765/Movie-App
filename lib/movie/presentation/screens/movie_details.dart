@@ -8,6 +8,9 @@ import 'package:movie_app/dependency_injection.dart';
 import 'package:movie_app/movie/presentation/blocs/movie_details_bloc.dart';
 import 'package:movie_app/movie/presentation/components/recommendation_movies_component.dart';
 
+import '../blocs/movie_details_event.dart';
+import '../blocs/movie_details_state.dart';
+
 class MovieDetailsScreen extends StatefulWidget {
   final int id;
 

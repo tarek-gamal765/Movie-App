@@ -72,45 +72,48 @@ class DrawerWidget extends StatelessWidget {
           const SizedBox(height: AppSize.s10),
           BlocBuilder<AppBloc, AppState>(
             builder: (context, state) {
-              return Column(
-                children: [
-                  ListTileWidget(
-                    iconData: Icons.movie,
-                    title: AppStrings.movies,
-                    isSelected: state.typeState == GeneralContentStates.movie,
-                    onTap: () {
-                      BlocProvider.of<AppBloc>(context)
-                          .add(const AppEvent(GeneralContentStates.movie));
-                      closeFun();
-                    },
-                  ),
-                  ListTileWidget(
-                    iconData: Icons.tv,
-                    title: AppStrings.tvs,
-                    isSelected: state.typeState == GeneralContentStates.tv,
-                    onTap: () {
-                      BlocProvider.of<AppBloc>(context)
-                          .add(const AppEvent(GeneralContentStates.tv));
-                      closeFun();
-                    },
-                  ),
-                  ListTileWidget(
-                    iconData: Icons.watch_later_outlined,
-                    title: AppStrings.watchlist,
-                    isSelected: false,
-                    onTap: () {
-                      closeFun();
-                    },
-                  ),
-                  ListTileWidget(
-                    iconData: Icons.info_outline,
-                    title: AppStrings.about,
-                    isSelected: false,
-                    onTap: () {
-                      closeFun();
-                    },
-                  ),
-                ],
+              return SizedBox(
+                width: 200,
+                child: Column(
+                  children: [
+                    ListTileWidget(
+                      iconData: Icons.movie,
+                      title: AppStrings.movies,
+                      isSelected: state.typeState == GeneralContentStates.movie,
+                      onTap: () {
+                        BlocProvider.of<AppBloc>(context)
+                            .add(const AppEvent(GeneralContentStates.movie));
+                        closeFun();
+                      },
+                    ),
+                    ListTileWidget(
+                      iconData: Icons.tv,
+                      title: AppStrings.tvs,
+                      isSelected: state.typeState == GeneralContentStates.tv,
+                      onTap: () {
+                        BlocProvider.of<AppBloc>(context)
+                            .add(const AppEvent(GeneralContentStates.tv));
+                        closeFun();
+                      },
+                    ),
+                    ListTileWidget(
+                      iconData: Icons.watch_later_outlined,
+                      title: AppStrings.watchlist,
+                      isSelected: false,
+                      onTap: () {
+                        closeFun();
+                      },
+                    ),
+                    ListTileWidget(
+                      iconData: Icons.info_outline,
+                      title: AppStrings.about,
+                      isSelected: false,
+                      onTap: () {
+                        closeFun();
+                      },
+                    ),
+                  ],
+                ),
               );
             },
           ),

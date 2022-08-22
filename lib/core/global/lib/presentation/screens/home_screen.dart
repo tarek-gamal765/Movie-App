@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/global/lib/presentation/common_widgets/drawer_widget.dart';
 import 'package:movie_app/core/global/styles/app_colors/app_colors_dark.dart';
 import 'package:movie_app/core/utils/enums.dart';
-import 'package:movie_app/core/utils/routes.dart';
 import 'package:movie_app/core/utils/values_manager.dart';
 import 'package:movie_app/movie/presentation/screens/main_movies.dart';
+import 'package:movie_app/test.dart';
 import 'package:movie_app/tv/presentation/screens/main_tvs.dart';
 
 import '../../../../utils/app_constants.dart';
@@ -119,13 +119,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   return IconButton(
                                     icon: const Icon(Icons.search),
                                     splashRadius: AppSize.s20,
-                                    onPressed: () => Navigator.pushNamed(
-                                      context,
-                                      state.typeState ==
-                                              GeneralContentStates.movie
-                                          ? Routes.movieRoute
-                                          : Routes.homeRoute,
-                                    ),
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) => Test()));
+                                      // Navigator.pushNamed(
+                                      //   context,
+                                      //   state.typeState ==
+                                      //           GeneralContentStates.movie
+                                      //       ? Routes.mainMovieRoute
+                                      //       : Routes.mainTvRoute,
+                                      // );
+                                    },
                                   );
                                 },
                               ),

@@ -4,7 +4,7 @@ import 'package:movie_app/core/utils/app_constants.dart';
 import 'package:movie_app/core/utils/urls.dart';
 import 'package:movie_app/movie/data/models/movie_details_model.dart';
 import 'package:movie_app/movie/data/models/movie_model.dart';
-import 'package:movie_app/movie/data/models/recommendatin_model.dart';
+import 'package:movie_app/movie/data/models/recommendatin_movie_model.dart';
 
 abstract class MovieRemoteDataSource {
   Future<List<MovieModel>> getNowPlayingMovies();
@@ -15,7 +15,7 @@ abstract class MovieRemoteDataSource {
 
   Future<MovieDetailsModel> getMovieDetails(int movieId);
 
-  Future<List<RecommendationModel>> getRecommendationMovies(int movieId);
+  Future<List<RecommendationMovieModel>> getRecommendationMovies(int movieId);
 }
 
 class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
@@ -72,12 +72,13 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
   }
 
   @override
-  Future<List<RecommendationModel>> getRecommendationMovies(int movieId) async {
+  Future<List<RecommendationMovieModel>> getRecommendationMovies(
+      int movieId) async {
     final response = await Dio().get(Urls.recommendationMoviesUrl(movieId));
     if (response.statusCode == AppConstants.successCode) {
-      return List<RecommendationModel>.from(
+      return List<RecommendationMovieModel>.from(
         (response.data['results'] as List).map(
-          (e) => RecommendationModel.fromJson(e),
+          (e) => RecommendationMovieModel.fromJson(e),
         ),
       );
     } else {

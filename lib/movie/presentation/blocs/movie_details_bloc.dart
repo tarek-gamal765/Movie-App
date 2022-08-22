@@ -1,23 +1,18 @@
 import 'dart:async';
 
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/utils/app_constants.dart';
 import '../../../core/utils/enums.dart';
 import '../../../dependency_injection.dart';
-import '../../domain/entities/movie_details_entity.dart';
-import '../../domain/entities/recommendation_entity.dart';
 import '../../domain/repository/movie_repository.dart';
 import '../../domain/usecases/get_movie_details_usecase.dart';
 import '../../domain/usecases/get_recommendation_movies_usecase.dart';
-import '../../domain/usecases/insert_to_watchlist_usecase.dart';
+import '../../domain/usecases/insert_movie_to_watchlist_usecase.dart';
 import '../../domain/usecases/is_movie_added_to_watchlist_usecase.dart';
-import '../../domain/usecases/remove_movies_from_watchlist_usecase.dart';
+import '../../domain/usecases/remove_movie_from_watchlist_usecase.dart';
+import 'movie_details_event.dart';
+import 'movie_details_state.dart';
 
-part 'movie_details_event.dart';
-
-part 'movie_details_state.dart';
 
 class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
   MovieDetailsBloc() : super(const MovieDetailsState()) {
@@ -70,7 +65,7 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
 
   void insertMovieToWatchlist() {
     on<InsertMovieToWatchlistEvent>((event, emit) async {
-      final result = await InsertToWatchlistUseCase(di<MovieRepository>())
+      final result = await InsertMovieToWatchlistUseCase(di<MovieRepository>())
           .call(event.movie);
       result.fold((failure) {
         emit(state.copyWith(
@@ -89,7 +84,7 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
   void removeMoviesFromWatchlist() {
     on<RemoveMoviesFromWatchlistEvent>((event, emit) async {
       final result =
-          await RemoveMoviesFromWatchlistUseCase(di<MovieRepository>())
+          await RemoveMovieFromWatchlistUseCase(di<MovieRepository>())
               .call(event.movie);
       result.fold((failure) {
         emit(state.copyWith(

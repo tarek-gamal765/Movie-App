@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../../core/error/failure.dart';
 import '../entities/movie_details_entity.dart';
 import '../entities/movie_entity.dart';
-import '../entities/recommendation_entity.dart';
+import '../entities/recommendation_movie_entity.dart';
 
 abstract class MovieRepository {
   Future<Either<Failure, List<MovieEntity>>> getNowPlayingMovies();
@@ -14,7 +14,7 @@ abstract class MovieRepository {
 
   Future<Either<Failure, MovieDetailsEntity>> getMovieDetails(int movieId);
 
-  Future<Either<Failure, List<RecommendationEntity>>> getRecommendationMovies(
+  Future<Either<Failure, List<RecommendationMovieEntity>>> getRecommendationMovies(
       int movieId);
 
   Future<Either<Failure, String>> insertMovieToWatchlist(MovieDetailsEntity movie);

@@ -2,12 +2,14 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/global/lib/presentation/common_widgets/bottom_sheet_details.dart';
 import 'package:movie_app/core/global/lib/presentation/common_widgets/card_item.dart';
+import '../../../core/utils/app_constants.dart';
+import '../../../core/utils/routes.dart';
 import '../../../core/utils/urls.dart';
 import '../../../core/utils/values_manager.dart';
-import '../../domain/entities/recommendation_entity.dart';
+import '../../domain/entities/recommendation_movie_entity.dart';
 
 class RecommendationMoviesComponent extends StatelessWidget {
-  final List<RecommendationEntity> recommendationList;
+  final List<RecommendationMovieEntity> recommendationList;
 
   const RecommendationMoviesComponent({
     Key? key,
@@ -25,27 +27,35 @@ class RecommendationMoviesComponent extends StatelessWidget {
       sliver: SliverGrid(
         delegate: SliverChildBuilderDelegate(
           (context, index) {
-            return recommendationList[index].posterPath != null ? FadeInUp(
+            return FadeInUp(
               from: 20,
               duration: const Duration(milliseconds: 500),
               child: InkWell(
-                onTap: (){
+                onTap: () {
                   showBottomSheetDetails(
                     context: context,
-                    id: recommendationList[index].id,
-                    imageUrl: Urls.imageUrl(recommendationList[index].posterPath!),
+                    imageUrl:
+                        Urls.imageUrl(recommendationList[index].posterPath!),
                     title: recommendationList[index].title,
                     overview: recommendationList[index].overview,
                     releaseDate: recommendationList[index].releaseDate,
                     voteAverage: recommendationList[index].voteAverage,
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pushNamed(
+                        Routes.movieDetailsRoute,
+                        arguments: recommendationList[index].id,
+                      );
+                    },
                   );
                 },
                 child: CardItem(
-                  imageUrl:
-                     Urls.imageUrl(recommendationList[index].posterPath!),
+                  imageUrl: recommendationList[index].posterPath != null
+                      ? Urls.imageUrl(recommendationList[index].posterPath!)
+                      : AppConstants.defaultImage,
                 ),
               ),
-            ) : const SizedBox();
+            );
           },
           childCount: recommendationList.length,
         ),

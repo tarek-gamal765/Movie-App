@@ -1,10 +1,16 @@
-part of 'movie_details_bloc.dart';
+
+import 'package:equatable/equatable.dart';
+
+import '../../../core/utils/app_constants.dart';
+import '../../../core/utils/enums.dart';
+import '../../domain/entities/movie_details_entity.dart';
+import '../../domain/entities/recommendation_movie_entity.dart';
 
 class MovieDetailsState extends Equatable {
   final MovieDetailsEntity? movieDetails;
   final RequestStates movieDetailsStates;
   final String movieDetailsMessage;
-  final List<RecommendationEntity> recommendationMovies;
+  final List<RecommendationMovieEntity> recommendationMovies;
   final RequestStates recommendationMoviesStates;
   final String recommendationMoviesMessage;
   final String addedMovieToWatchlist;
@@ -35,7 +41,7 @@ class MovieDetailsState extends Equatable {
     MovieDetailsEntity? movieDetails,
     RequestStates? movieDetailsStates,
     String? movieDetailsMessage,
-    List<RecommendationEntity>? recommendationMovies,
+    List<RecommendationMovieEntity>? recommendationMovies,
     RequestStates? recommendationMoviesStates,
     String? recommendationMoviesMessage,
     String? addedMovieToWatchlist,

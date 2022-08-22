@@ -6,6 +6,8 @@ import 'package:movie_app/core/global/lib/presentation/common_widgets/loading_wi
 import 'package:movie_app/core/utils/values_manager.dart';
 
 import '../../../core/utils/enums.dart';
+import '../../../core/utils/routes.dart';
+import '../../../core/utils/urls.dart';
 import '../blocs/movies_bloc.dart';
 import '../blocs/movies_state.dart';
 
@@ -46,16 +48,23 @@ class TopRatedMoviesComponent extends StatelessWidget {
                   onTap: () {
                     showBottomSheetDetails(
                       context: context,
-                      id: state.topRatedMovies[index].id,
                       imageUrl: state.topRatedMovies[index].posterPath,
                       title: state.topRatedMovies[index].title,
                       overview: state.topRatedMovies[index].overview,
                       releaseDate: state.topRatedMovies[index].releaseDate,
                       voteAverage: state.topRatedMovies[index].voteAverage,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pushNamed(
+                          Routes.movieDetailsRoute,
+                          arguments: state.topRatedMovies[index].id,
+                        );
+                      },
                     );
                   },
                   child: CardItem(
-                    imageUrl: state.topRatedMovies[index].posterPath,
+                    imageUrl:
+                        Urls.imageUrl(state.topRatedMovies[index].posterPath),
                   ),
                 );
               });

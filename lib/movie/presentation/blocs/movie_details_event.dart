@@ -1,4 +1,7 @@
-part of 'movie_details_bloc.dart';
+
+import 'package:equatable/equatable.dart';
+
+import '../../domain/entities/movie_details_entity.dart';
 
 abstract class MovieDetailsEvent extends Equatable {
   const MovieDetailsEvent();

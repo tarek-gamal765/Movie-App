@@ -9,7 +9,6 @@ class BottomSheetContent extends StatelessWidget {
   final String overview;
   final String releaseDate;
   final double voteAverage;
-  final bool isBottomSheet;
   final Color color;
 
   const BottomSheetContent({
@@ -19,7 +18,6 @@ class BottomSheetContent extends StatelessWidget {
     required this.overview,
     required this.releaseDate,
     required this.voteAverage,
-    required this.isBottomSheet,
     this.color = AppColorsDark.transparentColor,
   }) : super(key: key);
 
@@ -56,26 +54,25 @@ class BottomSheetContent extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    if (isBottomSheet)
-                      Expanded(
-                        flex: AppSize.s1.toInt(),
-                        child: Container(
-                          height: AppSize.s40,
-                          width: AppSize.s40,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Theme.of(context)
-                                .hoverColor
-                                .withOpacity(AppSize.s0_1),
-                          ),
-                          child: IconButton(
-                            splashRadius: AppSize.s20,
-                            onPressed: () => Navigator.of(context).pop(),
-                            icon: const Icon(Icons.close),
-                          ),
+                    Expanded(
+                      flex: AppSize.s1.toInt(),
+                      child: Container(
+                        height: AppSize.s40,
+                        width: AppSize.s40,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Theme.of(context)
+                              .hoverColor
+                              .withOpacity(AppSize.s0_1),
+                        ),
+                        child: IconButton(
+                          splashRadius: AppSize.s20,
+                          onPressed: () => Navigator.of(context).pop(),
+                          icon: const Icon(Icons.close),
                         ),
                       ),
-                    if (isBottomSheet) const SizedBox(width: AppSize.s8),
+                    ),
+                    const SizedBox(width: AppSize.s8),
                   ],
                 ),
                 const SizedBox(height: AppSize.s8),

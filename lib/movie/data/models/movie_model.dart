@@ -17,7 +17,7 @@ class MovieModel extends MovieEntity {
   factory MovieModel.formJson(Map<String, dynamic> json) => MovieModel(
         id: json['id'],
         genreIds: json['genre_ids'],
-        backdropPath: Urls.imageUrl(json['backdrop_path']),
+        backdropPath: json['backdrop_path'],
         overview: json['overview'],
         posterPath: Urls.imageUrl(json['poster_path']),
         title: json['title'],

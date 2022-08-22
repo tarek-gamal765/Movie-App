@@ -31,7 +31,7 @@ class ListTileWidget extends StatelessWidget {
         ),
         title: Text(
           title,
-          style: Theme.of(context).textTheme.subtitle2!.copyWith(
+          style: Theme.of(context).textTheme.subtitle1!.copyWith(
             color: isSelected
                 ? AppColorsDark.whiteColor
                 : AppColorsDark.greyColor,

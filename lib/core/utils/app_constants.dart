@@ -6,4 +6,6 @@ class AppConstants {
   static const double beginDuration = 0.0;
   static const double endDuration = 1.0;
   static const String empty = '';
+  static const String defaultImage =
+      'https://www.mangalpharmacare.com/assets/images/gynaeco/em.jpg';
 }

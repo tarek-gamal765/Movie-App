@@ -5,10 +5,10 @@ import '../../../core/usecase/base_usecase.dart';
 import '../entities/movie_details_entity.dart';
 import '../repository/movie_repository.dart';
 
-class InsertToWatchlistUseCase extends BaseUseCase<MovieDetailsEntity, String> {
+class InsertMovieToWatchlistUseCase extends BaseUseCase<MovieDetailsEntity, String> {
   final MovieRepository _movieRepository;
 
-  InsertToWatchlistUseCase(this._movieRepository);
+  InsertMovieToWatchlistUseCase(this._movieRepository);
 
   @override
   Future<Either<Failure, String>> call(MovieDetailsEntity input) async {

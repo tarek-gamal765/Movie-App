@@ -1,7 +1,8 @@
-import 'package:movie_app/movie/domain/entities/recommendation_entity.dart';
 
-class RecommendationModel extends RecommendationEntity {
-  const RecommendationModel({
+import '../../domain/entities/recommendation_movie_entity.dart';
+
+class RecommendationMovieModel extends RecommendationMovieEntity {
+  const RecommendationMovieModel({
     required super.id,
     required super.posterPath,
     required super.overview,
@@ -11,11 +12,10 @@ class RecommendationModel extends RecommendationEntity {
     required super.voteCount,
   });
 
-  factory RecommendationModel.fromJson(Map<String, dynamic> json) =>
-      RecommendationModel(
+  factory RecommendationMovieModel.fromJson(Map<String, dynamic> json) =>
+      RecommendationMovieModel(
         id: json['id'],
         posterPath: json['poster_path'],
-
         overview: json['overview'],
         title: json['title'],
         releaseDate: json['release_date'],

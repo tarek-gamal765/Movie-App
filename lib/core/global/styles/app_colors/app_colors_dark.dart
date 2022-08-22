@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/utils/values_manager.dart';
 
 class AppColorsDark {
   static const Color primaryColor = Color(0xFF1E1E29);
