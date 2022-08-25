@@ -36,32 +36,35 @@ class TvDatabaseHelper {
       lastAirDate TEXT,
       type TEXT,
       voteAverage DOUBLE,
-      voteCount INTEGER
+      voteCount INTEGER,
+      numOfSeason INTEGER,
+      numOfEpisodes INTEGER,
     )
     ''');
   }
 
-  Future<int> insertTvToWatchlist(TvTableModel movie) async {
+  Future<int> insertTvToWatchlist(TvTableModel tv) async {
     final db = await database;
+   await removeAllTvsWatchlist();
     final result = await db!.insert(
       AppStrings.tvDbTableName,
-      movie.toJson(),
+      tv.toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
     await getTvsFromWatchlist();
     return result;
   }
 
-  Future<int> removeTvFromWatchlist(TvTableModel movie) async {
+  Future<int> removeTvFromWatchlist(TvTableModel tv) async {
     final db = await database;
     return await db!.delete(
       AppStrings.tvDbTableName,
       where: 'id = ?',
-      whereArgs: [movie.id],
+      whereArgs: [tv.id],
     );
   }
 
-  Future<int> removeTvsWatchlist(TvTableModel movie) async {
+  Future<int> removeAllTvsWatchlist() async {
     final db = await database;
     return await db!.delete(
       AppStrings.tvDbTableName,

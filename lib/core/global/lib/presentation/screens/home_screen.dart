@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     _drawerAnimationController = AnimationController(
       vsync: this,
       duration: const Duration(
-        milliseconds: AppConstants.animationDuration300,
+        milliseconds: AppConstants.animationDuration500,
       ),
     );
     _drawerAnimation = Tween(

@@ -30,6 +30,6 @@ class Urls {
   static String recommendationTvsUrl(int movieId) =>
       '$baseUrl/tv/$movieId/recommendations$apiKey$langUrl';
   static String tvSeasons(int id, int seasonNumber) =>
-      '$baseUrl/tv/$id/season/$seasonNumber?$apiKey';
-
+      '$baseUrl/tv/$id/season/$seasonNumber$apiKey';
+  // https://api.themoviedb.org/3/tv/94997/season/2?api_key=aa2cd5c1310491c1605d2152228a72da
 }

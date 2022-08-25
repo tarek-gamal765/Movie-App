@@ -24,6 +24,9 @@ class AppStrings {
   static const String titleTable = 'title';
   static const String voteAverageTable = 'voteAverage';
   static const String voteCountTable = 'voteCount';
+  static const String numOfSeason = 'numOfSeason';
+  static const String numOfEpisodes = 'numOfEpisodes';
+  static const String seasons = 'seasons';
   static const String popularTvs = 'Popular Tvs';
   static const String topRatedTvs = 'Top Rated Tvs';
   static const String tvDbPath = '/tv.db';
@@ -34,4 +37,7 @@ class AppStrings {
   static const String firstAirDate = 'firstAirDate';
   static const String addToWatchlist = 'Add to watchlist';
   static const String removeFromWatchlist = 'Remove from watchlist';
+  static const String episodes = 'EPISODES';
+  static const String season = 'Season';
+  static const String comingSoon = 'Coming Soon!';
 }

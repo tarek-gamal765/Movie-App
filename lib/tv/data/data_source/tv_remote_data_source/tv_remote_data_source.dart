@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:movie_app/tv/data/models/tv_season_episode_model.dart';
 
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/utils/app_constants.dart';
@@ -17,6 +18,9 @@ abstract class TvRemoteDataSource {
   Future<TvDetailsModel> getTvDetails(int tvId);
 
   Future<List<RecommendationTvModel>> getRecommendationTvs(int tvId);
+
+  Future<List<TvSeasonEpisodeModel>> getTvSeasonEpisodes(
+      int tvId, int seasonNumber);
 }
 
 class TvRemoteDataSourceImpl implements TvRemoteDataSource {
@@ -80,6 +84,21 @@ class TvRemoteDataSourceImpl implements TvRemoteDataSource {
         (response.data['results'] as List).map(
           (e) => RecommendationTvModel.fromJson(e),
         ),
+      );
+    } else {
+      throw ServerException(response.data);
+    }
+  }
+
+  @override
+  Future<List<TvSeasonEpisodeModel>> getTvSeasonEpisodes(
+      int tvId, int seasonNumber) async {
+    final response = await Dio().get(Urls.tvSeasons(tvId,seasonNumber));
+    if (response.statusCode == AppConstants.successCode) {
+      return List<TvSeasonEpisodeModel>.from(
+        (response.data['episodes'] as List)
+            .map((x) => TvSeasonEpisodeModel.fromJson(x))
+            .where((element) => element.stillPath != null),
       );
     } else {
       throw ServerException(response.data);

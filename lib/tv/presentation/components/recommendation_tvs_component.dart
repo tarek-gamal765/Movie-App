@@ -19,16 +19,13 @@ class RecommendationTvsComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: const EdgeInsets.only(
-        top: AppPadding.p10,
-        bottom: AppPadding.p10,
-        right: AppPadding.p10,
-      ),
+        padding:
+        const EdgeInsets.fromLTRB(AppSize.s12, AppSize.s0, AppSize.s12, AppSize.s12),
       sliver: SliverGrid(
         delegate: SliverChildBuilderDelegate(
           (context, index) {
             return FadeInUp(
-              from: 20,
+              from: AppSize.s20,
               duration: const Duration(milliseconds: 500),
               child: InkWell(
                 onTap: () {
@@ -61,13 +58,13 @@ class RecommendationTvsComponent extends StatelessWidget {
           childCount: recommendationList.length,
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          mainAxisSpacing: 8.0,
-          // crossAxisSpacing: 8.0,
-          childAspectRatio: 0.8,
+          mainAxisSpacing: AppSize.s8,
+          crossAxisSpacing:AppSize.s8,
+          childAspectRatio: AppSize.s0_7,
           crossAxisCount:
               (MediaQuery.of(context).orientation == Orientation.portrait)
-                  ? 3
-                  : 4,
+                  ? AppSize.s3.toInt()
+                  : AppSize.s4.toInt(),
         ),
       ),
     );

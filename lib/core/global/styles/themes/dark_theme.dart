@@ -64,6 +64,14 @@ ThemeData darkTheme() => ThemeData(
           color: AppColorsDark.greyColor,
           fontSize: FontSize.s14,
         ),
+        caption: getRegularStyle(
+          color: AppColorsDark.greyColor,
+          fontSize: FontSize.s10,
+        ),
+        headline4: getSemiBoldStyle(
+          color: AppColorsDark.greyColor,
+          fontSize: FontSize.s14,
+        ),
       ),
       colorScheme: const ColorScheme(
         brightness: Brightness.dark,

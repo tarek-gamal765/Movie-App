@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:movie_app/tv/domain/entities/tv_season_episode.dart';
 
 import '../../../core/utils/app_constants.dart';
 import '../../../core/utils/enums.dart';
@@ -12,6 +13,9 @@ class TvDetailsState extends Equatable {
   final List<RecommendationTvEntity> recommendationTvs;
   final RequestStates recommendationTvsStates;
   final String recommendationTvsMessage;
+  final List<TvSeasonEpisode> tvSeasonEpisodes;
+  final RequestStates tvSeasonEpisodesStates;
+  final String tvSeasonEpisodesMessage;
   final String addedTvToWatchlist;
   final String addedTvToWatchlistMessage;
   final RequestStates addedTvToWatchlistStates;
@@ -30,6 +34,9 @@ class TvDetailsState extends Equatable {
     this.recommendationTvs = const [],
     this.recommendationTvsStates = RequestStates.loading,
     this.recommendationTvsMessage = AppConstants.empty,
+    this.tvSeasonEpisodes = const [],
+    this.tvSeasonEpisodesStates = RequestStates.loading,
+    this.tvSeasonEpisodesMessage = AppConstants.empty,
     this.addedTvToWatchlist = AppConstants.empty,
     this.addedTvToWatchlistMessage = AppConstants.empty,
     this.addedTvToWatchlistStates = RequestStates.loading,
@@ -49,6 +56,9 @@ class TvDetailsState extends Equatable {
     List<RecommendationTvEntity>? recommendationTvs,
     RequestStates? recommendationTvsStates,
     String? recommendationTvsMessage,
+    List<TvSeasonEpisode>? tvSeasonEpisodes,
+    RequestStates? tvSeasonEpisodesStates,
+    String? tvSeasonEpisodesMessage,
     String? addedTvToWatchlist,
     String? addedTvToWatchlistMessage,
     RequestStates? addedTvToWatchlistStates,
@@ -69,6 +79,11 @@ class TvDetailsState extends Equatable {
           recommendationTvsStates ?? this.recommendationTvsStates,
       recommendationTvsMessage:
           recommendationTvsMessage ?? this.recommendationTvsMessage,
+      tvSeasonEpisodes: tvSeasonEpisodes ?? this.tvSeasonEpisodes,
+      tvSeasonEpisodesStates:
+          tvSeasonEpisodesStates ?? this.tvSeasonEpisodesStates,
+      tvSeasonEpisodesMessage:
+          tvSeasonEpisodesMessage ?? this.tvSeasonEpisodesMessage,
       addedTvToWatchlist: addedTvToWatchlist ?? this.addedTvToWatchlist,
       addedTvToWatchlistMessage:
           addedTvToWatchlistMessage ?? this.addedTvToWatchlistMessage,
@@ -98,6 +113,9 @@ class TvDetailsState extends Equatable {
         recommendationTvs,
         recommendationTvsStates,
         recommendationTvsMessage,
+        tvSeasonEpisodes,
+        tvSeasonEpisodesStates,
+        tvSeasonEpisodesMessage,
         addedTvToWatchlist,
         addedTvToWatchlistMessage,
         addedTvToWatchlistStates,

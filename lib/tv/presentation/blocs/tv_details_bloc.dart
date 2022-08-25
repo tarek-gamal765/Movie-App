@@ -3,11 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/tv/domain/usecases/remove_tvs_from_watchlist_use_case.dart';
 import 'package:movie_app/tv/presentation/blocs/tv_details_state.dart';
 
+import '../../../core/usecase/base_usecase.dart';
 import '../../../core/utils/enums.dart';
 import '../../../dependency_injection.dart';
 import '../../domain/repository/tv_repository.dart';
 import '../../domain/usecases/get_recommendation_tvs_usecase.dart';
 import '../../domain/usecases/get_tv_details_usecase.dart';
+import '../../domain/usecases/get_tv_season_episode_usecase.dart';
 import '../../domain/usecases/insert_tv_to_watchlist_usecase.dart';
 import '../../domain/usecases/is_tv_added_to_watchlist_usecase.dart';
 import '../../domain/usecases/remove_tv_by_id_from_watchlist_usecase.dart';
@@ -21,11 +23,16 @@ class TvDetailsBloc extends Bloc<TvDetailsEvent, TvDetailsState> {
     on<RemoveTvByIdFromWatchlistEvent>(removeTvByIdFromWatchlist);
     on<RemoveAllTvsFromWatchlistEvent>(removeAllTvsFromWatchlist);
     on<IsTvAddedToWatchlistEvent>(_isTvAddedToWatchlist);
+    on<GetTvSeasonEpisodesEvent>(getTvSeasonEpisodes);
+    on<ChangeTabBarIndexEvent>(changeTabBarIndex);
   }
 
   bool _isAddedToWatchlist = false;
 
   bool get isAddedToWatchlist => _isAddedToWatchlist;
+  int _tabIndex = 0;
+
+  int get tabIndex => _tabIndex;
 
   Future<FutureOr<void>> getTvDetails(
       GetTvDetailsEvent event, Emitter<TvDetailsState> emit) async {
@@ -57,6 +64,23 @@ class TvDetailsBloc extends Bloc<TvDetailsEvent, TvDetailsState> {
       emit(state.copyWith(
         recommendationTvs: data,
         recommendationTvsStates: RequestStates.success,
+      ));
+    });
+  }
+
+  Future<FutureOr<void>> getTvSeasonEpisodes(
+      GetTvSeasonEpisodesEvent event, Emitter<TvDetailsState> emit) async {
+    final result =
+        await GetTvSeasonEpisodesUseCase(di<TvRepository>()).call(event.params);
+    result.fold((failure) {
+      emit(state.copyWith(
+        tvSeasonEpisodesMessage: failure.message,
+        tvSeasonEpisodesStates: RequestStates.error,
+      ));
+    }, (data) {
+      emit(state.copyWith(
+        tvSeasonEpisodes: data,
+        tvSeasonEpisodesStates: RequestStates.success,
       ));
     });
   }
@@ -101,7 +125,7 @@ class TvDetailsBloc extends Bloc<TvDetailsEvent, TvDetailsState> {
       Emitter<TvDetailsState> emit) async {
     on<RemoveAllTvsFromWatchlistEvent>((event, emit) async {
       final result = await RemoveTvsFromWatchlistUseCase(di<TvRepository>())
-          .call(event.tv);
+          .call(NoPrams());
       result.fold((failure) {
         emit(state.copyWith(
           removeAllTvsFromWatchlistMessage: failure.message,
@@ -122,5 +146,11 @@ class TvDetailsBloc extends Bloc<TvDetailsEvent, TvDetailsState> {
         await IsTvAddedToWatchlistUseCase(di<TvRepository>()).call(event.tvId);
     _isAddedToWatchlist = result;
     emit(state.copyWith(isTvAddedToWatchlist: result));
+  }
+
+  Future<FutureOr<void>> changeTabBarIndex(
+      ChangeTabBarIndexEvent event, Emitter<TvDetailsState> emit) async {
+    _tabIndex = event.index;
+    emit(state.copyWith());
   }
 }

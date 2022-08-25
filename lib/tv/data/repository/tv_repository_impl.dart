@@ -3,6 +3,7 @@ import 'package:movie_app/core/error/failure.dart';
 import 'package:movie_app/tv/domain/entities/recommendation_tv_entity.dart';
 import 'package:movie_app/tv/domain/entities/tv_details_entity.dart';
 import 'package:movie_app/tv/domain/entities/tv_entity.dart';
+import 'package:movie_app/tv/domain/entities/tv_season_episode.dart';
 import 'package:movie_app/tv/domain/repository/tv_repository.dart';
 
 import '../../../core/error/exceptions.dart';
@@ -53,8 +54,7 @@ class TvRepositoryImpl implements TvRepository {
   }
 
   @override
-  Future<Either<Failure, TvDetailsEntity>> getTvDetails(
-      int tvId) async {
+  Future<Either<Failure, TvDetailsEntity>> getTvDetails(int tvId) async {
     final response = await _tvRemoteDataSource.getTvDetails(tvId);
     try {
       return Right(response);
@@ -68,8 +68,21 @@ class TvRepositoryImpl implements TvRepository {
   @override
   Future<Either<Failure, List<RecommendationTvEntity>>> getRecommendationTvs(
       int tvId) async {
+    final response = await _tvRemoteDataSource.getRecommendationTvs(tvId);
+    try {
+      return Right(response);
+    } on ServerException catch (failure) {
+      return Left(
+        ServerFailure(failure.errorModel.statusMessage),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<TvSeasonEpisode>>> getTvSeasonEpisode(
+      int tvId, int seasonNumber) async {
     final response =
-    await _tvRemoteDataSource.getRecommendationTvs(tvId);
+        await _tvRemoteDataSource.getTvSeasonEpisodes(tvId, seasonNumber);
     try {
       return Right(response);
     } on ServerException catch (failure) {
@@ -110,10 +123,8 @@ class TvRepositoryImpl implements TvRepository {
   }
 
   @override
-  Future<Either<Failure, String>> removeTvsFromWatchlist(TvDetailsEntity tv) async{
-    final response = await _tvLocalDataSource.removeTvsFromWatchlist(
-      TvTableModel.formEntity(tv),
-    );
+  Future<Either<Failure, String>> removeAllTvsFromWatchlist() async {
+    final response = await _tvLocalDataSource.removeAllTvsFromWatchlist();
     try {
       return Right(response);
     } on DatabaseException catch (failure) {
@@ -124,13 +135,11 @@ class TvRepositoryImpl implements TvRepository {
   }
 
   @override
-  Future<Either<Failure, List<TvDetailsEntity>>>
-  getTvsFromWatchlist() async {
+  Future<Either<Failure, List<TvDetailsEntity>>> getTvsFromWatchlist() async {
     final response = await _tvLocalDataSource.getTvsFromWatchlist();
 
     try {
-      return Right(
-          List.from(response.map((e) => TvTableModel.formEntity(e))));
+      return Right(List.from(response.map((e) => TvTableModel.formEntity(e))));
     } on DatabaseException catch (failure) {
       return Left(
         DatabaseFailure(failure.errorModel.statusMessage),
@@ -143,5 +152,4 @@ class TvRepositoryImpl implements TvRepository {
     final response = await _tvLocalDataSource.getTvByIdFromWatchlist(id);
     return response != null;
   }
-
 }

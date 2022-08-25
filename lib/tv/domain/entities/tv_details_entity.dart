@@ -1,8 +1,9 @@
 import 'package:equatable/equatable.dart';
+import 'package:movie_app/tv/data/models/tv_genres_model.dart';
 
 class TvDetailsEntity extends Equatable {
   final int id;
-  final List genres;
+  final List<TvGenresModel> genres;
   final String backdropPath;
   final String overview;
   final String posterPath;
@@ -12,6 +13,8 @@ class TvDetailsEntity extends Equatable {
   final double voteAverage;
   final String type;
   final int voteCount;
+  final int numOfSeason;
+  final int numOfEpisodes;
 
   const TvDetailsEntity({
     required this.id,
@@ -25,6 +28,8 @@ class TvDetailsEntity extends Equatable {
     required this.voteAverage,
     required this.type,
     required this.voteCount,
+    required this.numOfSeason,
+    required this.numOfEpisodes,
   });
 
   @override
@@ -38,7 +43,9 @@ class TvDetailsEntity extends Equatable {
         firstAirDate,
         lastAirDate,
         voteAverage,
-    type,
+        type,
         voteCount,
+        numOfSeason,
+        numOfEpisodes,
       ];
 }

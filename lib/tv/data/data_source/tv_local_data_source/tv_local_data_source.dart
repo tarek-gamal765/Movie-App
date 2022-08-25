@@ -9,7 +9,7 @@ abstract class TvLocalDataSource {
 
   Future<String> removeTvByIdFromWatchlist(TvTableModel tv);
 
-  Future<String> removeTvsFromWatchlist(TvTableModel tv);
+  Future<String> removeAllTvsFromWatchlist();
 
   Future<List<TvTableModel>> getTvsFromWatchlist();
 
@@ -42,9 +42,9 @@ class TvLocalDataSourceImpl implements TvLocalDataSource {
   }
 
   @override
-  Future<String> removeTvsFromWatchlist(TvTableModel tv) async {
+  Future<String> removeAllTvsFromWatchlist() async {
     try {
-      await _tvDatabaseHelper.removeTvsWatchlist(tv);
+      await _tvDatabaseHelper.removeAllTvsWatchlist();
       return 'All tvs removed successfully';
     } on DatabaseException catch (e) {
       throw DatabaseException(e.errorModel);

@@ -2,6 +2,8 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../styles/app_colors/app_colors_dark.dart';
+
 class SliverAppBarImageWidget extends StatelessWidget {
   final String imageUrl;
 
@@ -13,6 +15,7 @@ class SliverAppBarImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      backgroundColor: AppColorsDark.primaryColor,
       pinned: true,
       expandedHeight: 260.0,
       flexibleSpace: FlexibleSpaceBar(

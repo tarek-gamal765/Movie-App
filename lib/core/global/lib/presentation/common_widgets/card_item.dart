@@ -16,7 +16,6 @@ class CardItem extends StatelessWidget {
     return Container(
       height: AppSize.s160,
       width: AppSize.s120,
-      margin: const EdgeInsets.only(left: AppMargin.m10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppSize.s10),
       ),
@@ -28,6 +27,7 @@ class CardItem extends StatelessWidget {
           height: AppSize.s160,
           width: AppSize.s120,
         ),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
       ),
     );
   }

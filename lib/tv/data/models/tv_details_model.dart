@@ -15,6 +15,8 @@ class TvDetailsModel extends TvDetailsEntity {
     required super.voteAverage,
     required super.type,
     required super.voteCount,
+    required super.numOfSeason,
+    required super.numOfEpisodes,
   });
 
   factory TvDetailsModel.formJson(Map<String, dynamic> json) => TvDetailsModel(
@@ -30,5 +32,7 @@ class TvDetailsModel extends TvDetailsEntity {
         voteAverage: json['vote_average'].toDouble(),
         voteCount: json['vote_count'],
         type: json['type'],
+        numOfEpisodes: json['number_of_episodes'],
+        numOfSeason: json['number_of_seasons'],
       );
 }

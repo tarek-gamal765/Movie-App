@@ -14,6 +14,8 @@ class TvTableModel extends TvDetailsEntity {
     required super.voteAverage,
     required super.type,
     required super.voteCount,
+    required super.numOfSeason,
+    required super.numOfEpisodes,
   });
 
   factory TvTableModel.formJson(Map<String, dynamic> json) => TvTableModel(
@@ -27,6 +29,8 @@ class TvTableModel extends TvDetailsEntity {
         type: json[AppStrings.typeTable],
         voteAverage: json[AppStrings.voteAverageTable].toDouble(),
         voteCount: json[AppStrings.voteCountTable],
+        numOfSeason: json[AppStrings.numOfSeason],
+        numOfEpisodes: json[AppStrings.numOfEpisodes],
       );
 
   Map<String, dynamic> toJson() => {
@@ -40,6 +44,8 @@ class TvTableModel extends TvDetailsEntity {
         AppStrings.typeTable: type,
         AppStrings.voteAverageTable: voteAverage,
         AppStrings.voteCountTable: voteCount,
+        AppStrings.numOfSeason: numOfSeason,
+        AppStrings.numOfEpisodes: numOfEpisodes,
       };
 
   factory TvTableModel.formEntity(TvDetailsEntity tvDetails) => TvTableModel(
@@ -53,5 +59,7 @@ class TvTableModel extends TvDetailsEntity {
         type: tvDetails.type,
         voteAverage: tvDetails.voteAverage,
         voteCount: tvDetails.voteCount,
+        numOfSeason: tvDetails.numOfSeason,
+        numOfEpisodes: tvDetails.numOfEpisodes,
       );
 }

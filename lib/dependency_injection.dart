@@ -10,6 +10,7 @@ import 'package:movie_app/tv/data/repository/tv_repository_impl.dart';
 import 'package:movie_app/tv/domain/repository/tv_repository.dart';
 import 'package:movie_app/tv/domain/usecases/get_recommendation_tvs_usecase.dart';
 import 'package:movie_app/tv/domain/usecases/get_tv_details_usecase.dart';
+import 'package:movie_app/tv/domain/usecases/get_tv_season_episode_usecase.dart';
 import 'package:movie_app/tv/domain/usecases/insert_tv_to_watchlist_usecase.dart';
 import 'package:movie_app/tv/domain/usecases/is_tv_added_to_watchlist_usecase.dart';
 import 'package:movie_app/tv/domain/usecases/remove_tv_by_id_from_watchlist_usecase.dart';
@@ -157,6 +158,11 @@ void init() {
   );
   di.registerLazySingleton<IsTvAddedToWatchlistUseCase>(
     () => IsTvAddedToWatchlistUseCase(
+      di<TvRepository>(),
+    ),
+  );
+  di.registerLazySingleton<GetTvSeasonEpisodesUseCase>(
+    () => GetTvSeasonEpisodesUseCase(
       di<TvRepository>(),
     ),
   );
