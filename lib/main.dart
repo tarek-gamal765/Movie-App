@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
             ..add(GetTopRatedTvsEvent()),
         ),
         BlocProvider<SearchBloc>(
-          create: (context) => SearchBloc(),
+          create: (context) => di<SearchBloc>(),
         ),
       ],
       child: MaterialApp(

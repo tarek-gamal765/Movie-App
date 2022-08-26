@@ -3,6 +3,8 @@ import 'package:movie_app/core/global/lib/presentation/bloc/app_bloc.dart';
 import 'package:movie_app/movie/domain/usecases/insert_movie_to_watchlist_usecase.dart';
 import 'package:movie_app/movie/domain/usecases/is_movie_added_to_watchlist_usecase.dart';
 import 'package:movie_app/movie/domain/usecases/remove_movie_from_watchlist_usecase.dart';
+import 'package:movie_app/search/domain/usecases/search_movie_usecase.dart';
+import 'package:movie_app/search/presentation/blocs/search_bloc.dart';
 import 'package:movie_app/tv/data/data_source/tv_local_data_source/db/tv_data_base_helper.dart';
 import 'package:movie_app/tv/data/data_source/tv_local_data_source/tv_local_data_source.dart';
 import 'package:movie_app/tv/data/data_source/tv_remote_data_source/tv_remote_data_source.dart';
@@ -16,6 +18,7 @@ import 'package:movie_app/tv/domain/usecases/insert_tv_to_watchlist_usecase.dart
 import 'package:movie_app/tv/domain/usecases/is_tv_added_to_watchlist_usecase.dart';
 import 'package:movie_app/tv/domain/usecases/remove_tv_by_id_from_watchlist_usecase.dart';
 import 'package:movie_app/tv/domain/usecases/remove_tvs_from_watchlist_use_case.dart';
+import 'package:movie_app/tv/domain/usecases/tv_search_usecase.dart';
 import 'package:movie_app/tv/presentation/blocs/tv_details_bloc.dart';
 import 'package:movie_app/tv/domain/usecases/get_on_the_air_tvs_usecase.dart';
 import 'package:movie_app/tv/domain/usecases/get_popular_tvs_usecase.dart';
@@ -48,6 +51,7 @@ void init() {
   di.registerFactory(() => TvDetailsBloc());
   di.registerFactory(() => TvWatchlistBloc());
   di.registerFactory(() => MovieWatchlistBloc());
+  di.registerFactory(() => SearchBloc());
 
   //data source
   di.registerLazySingleton<MovieRemoteDataSource>(
@@ -174,6 +178,16 @@ void init() {
   );
   di.registerLazySingleton<GetTvsFromWatchlistUseCase>(
     () => GetTvsFromWatchlistUseCase(
+      di<TvRepository>(),
+    ),
+  );
+  di.registerLazySingleton<SearchMovieUseCase>(
+    () => SearchMovieUseCase(
+      di<MovieRepository>(),
+    ),
+  );
+  di.registerLazySingleton<SearchTvUseCase>(
+    () => SearchTvUseCase(
       di<TvRepository>(),
     ),
   );
