@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/tv/domain/usecases/get_tvs_from_watchlist_usecase.dart';
 import 'package:movie_app/tv/domain/usecases/remove_tvs_from_watchlist_use_case.dart';
 import 'package:movie_app/tv/presentation/blocs/tv_details_state.dart';
 

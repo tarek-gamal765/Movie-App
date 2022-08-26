@@ -89,7 +89,6 @@ class TvDatabaseHelper {
     final result = await db!.query(
       AppStrings.tvDbTableName,
     );
-    print('db :::: $result');
     return result;
   }
 }

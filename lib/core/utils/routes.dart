@@ -6,10 +6,9 @@ import 'package:movie_app/tv/presentation/screens/main_tvs.dart';
 import 'package:movie_app/tv/presentation/screens/popular_tvs.dart';
 import 'package:movie_app/tv/presentation/screens/top_rated_tvs.dart';
 import 'package:movie_app/tv/presentation/screens/tv_details.dart';
-
+import 'package:movie_app/core/global/lib/presentation/screens/watchlist_screen.dart';
 import '../../movie/presentation/screens/movie_details.dart';
 import '../../movie/presentation/screens/main_movies.dart';
-import '../global/lib/presentation/screens/watchlist_screen.dart';
 import 'app_strings.dart';
 
 class Routes {
@@ -51,9 +50,7 @@ class RouteGenerator {
             builder: (_) =>
                 TvDetailsScreen(id: routeSettings.arguments as int));
       case Routes.watchlistRoute:
-        return MaterialPageRoute(
-            builder: (_) =>
-                const WatchlistScreen());
+        return MaterialPageRoute(builder: (_) => const WatchlistScreen());
       default:
         return unDefinedRoute();
     }
