@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/global/lib/presentation/common_widgets/card_item.dart';
+import 'package:movie_app/core/global/lib/presentation/common_widgets/image_item.dart';
 import 'package:movie_app/core/global/styles/app_colors/app_colors_dark.dart';
 import 'package:movie_app/core/utils/values_manager.dart';
 
@@ -28,15 +28,11 @@ class BottomSheetContent extends StatelessWidget {
         color: color,
         borderRadius: BorderRadius.circular(AppSize.s10),
       ),
-      padding: const EdgeInsets.only(
-        top: AppSize.s10,
-        bottom: AppSize.s10,
-        right: AppSize.s10,
-      ),
+      padding: const EdgeInsets.all(AppPadding.p10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          CardItem(imageUrl: imageUrl),
+          ImageItem(imageUrl: imageUrl),
           const SizedBox(width: AppSize.s10),
           Expanded(
             child: Column(

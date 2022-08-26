@@ -1,9 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:movie_app/tv/data/models/tv_genres_model.dart';
 
 class TvDetailsEntity extends Equatable {
   final int id;
-  final List<TvGenresModel> genres;
+  final List genres;
   final String backdropPath;
   final String overview;
   final String posterPath;

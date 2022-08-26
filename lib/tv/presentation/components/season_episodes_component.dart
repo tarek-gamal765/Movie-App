@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/global/lib/presentation/common_widgets/card_item.dart';
+import 'package:movie_app/core/global/lib/presentation/common_widgets/image_item.dart';
 import 'package:movie_app/core/global/styles/app_colors/app_colors_dark.dart';
 import 'package:movie_app/core/utils/app_constants.dart';
 import 'package:movie_app/core/utils/app_strings.dart';
@@ -52,7 +52,7 @@ class SeasonEpisodesComponent extends StatelessWidget {
                           Row(
                             children: [
                               Expanded(
-                                child: CardItem(
+                                child: ImageItem(
                                   imageUrl: seasonEpisode.stillPath != null
                                       ? Urls.imageUrl(
                                           seasonEpisode.stillPath!)

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/global/lib/presentation/common_widgets/list_tile_widget.dart';
+import 'package:movie_app/core/utils/routes.dart';
 
 import '../../../../utils/app_strings.dart';
 import '../../../../utils/enums.dart';
@@ -101,6 +102,9 @@ class DrawerWidget extends StatelessWidget {
                       title: AppStrings.watchlist,
                       isSelected: false,
                       onTap: () {
+                        Navigator.of(context).pushNamed(
+                          Routes.watchlistRoute,
+                        );
                         closeFun();
                       },
                     ),

@@ -9,6 +9,7 @@ import 'package:movie_app/tv/presentation/screens/tv_details.dart';
 
 import '../../movie/presentation/screens/movie_details.dart';
 import '../../movie/presentation/screens/main_movies.dart';
+import '../global/lib/presentation/screens/watchlist_screen.dart';
 import 'app_strings.dart';
 
 class Routes {
@@ -21,6 +22,7 @@ class Routes {
   static const String tvDetailsRoute = '/tvDetails';
   static const String popularTvsRoute = '/popularTvs';
   static const String topRatedTvsRoute = '/topRatedTvs';
+  static const String watchlistRoute = '/watchlist';
 }
 
 class RouteGenerator {
@@ -48,6 +50,10 @@ class RouteGenerator {
         return MaterialPageRoute(
             builder: (_) =>
                 TvDetailsScreen(id: routeSettings.arguments as int));
+      case Routes.watchlistRoute:
+        return MaterialPageRoute(
+            builder: (_) =>
+                const WatchlistScreen());
       default:
         return unDefinedRoute();
     }

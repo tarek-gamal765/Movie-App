@@ -38,14 +38,13 @@ class TvDatabaseHelper {
       voteAverage DOUBLE,
       voteCount INTEGER,
       numOfSeason INTEGER,
-      numOfEpisodes INTEGER,
+      numOfEpisodes INTEGER
     )
     ''');
   }
 
   Future<int> insertTvToWatchlist(TvTableModel tv) async {
     final db = await database;
-   await removeAllTvsWatchlist();
     final result = await db!.insert(
       AppStrings.tvDbTableName,
       tv.toJson(),
@@ -87,8 +86,10 @@ class TvDatabaseHelper {
 
   Future<List<Map<String, dynamic>>> getTvsFromWatchlist() async {
     final db = await database;
-    return await db!.query(
+    final result = await db!.query(
       AppStrings.tvDbTableName,
     );
+    print('db :::: $result');
+    return result;
   }
 }

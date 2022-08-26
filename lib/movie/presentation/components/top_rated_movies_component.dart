@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/global/lib/presentation/common_widgets/bottom_sheet_details.dart';
-import 'package:movie_app/core/global/lib/presentation/common_widgets/card_item.dart';
+import 'package:movie_app/core/global/lib/presentation/common_widgets/image_item.dart';
 import 'package:movie_app/core/global/lib/presentation/common_widgets/loading_widget.dart';
 import 'package:movie_app/core/utils/values_manager.dart';
 
@@ -30,7 +30,7 @@ class TopRatedMoviesComponent extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return const Padding(
-                  padding: EdgeInsets.only(right: AppPadding.p10),
+                  padding: EdgeInsets.only(right: AppPadding.p8),
                   child: LoadingWidget(
                     height: AppSize.s160,
                     width: AppSize.s120,
@@ -44,27 +44,32 @@ class TopRatedMoviesComponent extends StatelessWidget {
               itemCount: state.topRatedMovies.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () {
-                    showBottomSheetDetails(
-                      context: context,
-                      imageUrl: state.topRatedMovies[index].posterPath,
-                      title: state.topRatedMovies[index].title,
-                      overview: state.topRatedMovies[index].overview,
-                      releaseDate: state.topRatedMovies[index].releaseDate,
-                      voteAverage: state.topRatedMovies[index].voteAverage,
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        Navigator.of(context).pushNamed(
-                          Routes.movieDetailsRoute,
-                          arguments: state.topRatedMovies[index].id,
-                        );
-                      },
-                    );
-                  },
-                  child: CardItem(
-                    imageUrl:
-                        Urls.imageUrl(state.topRatedMovies[index].posterPath),
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    right: AppPadding.p8,
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      showBottomSheetDetails(
+                        context: context,
+                        imageUrl: state.topRatedMovies[index].posterPath,
+                        title: state.topRatedMovies[index].title,
+                        overview: state.topRatedMovies[index].overview,
+                        releaseDate: state.topRatedMovies[index].releaseDate,
+                        voteAverage: state.topRatedMovies[index].voteAverage,
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pushNamed(
+                            Routes.movieDetailsRoute,
+                            arguments: state.topRatedMovies[index].id,
+                          );
+                        },
+                      );
+                    },
+                    child: ImageItem(
+                      imageUrl:
+                          Urls.imageUrl(state.topRatedMovies[index].posterPath),
+                    ),
                   ),
                 );
               });

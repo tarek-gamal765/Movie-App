@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/tv/domain/usecases/get_tvs_from_watchlist_usecase.dart';
 import 'package:movie_app/tv/domain/usecases/remove_tvs_from_watchlist_use_case.dart';
 import 'package:movie_app/tv/presentation/blocs/tv_details_state.dart';
 
@@ -24,15 +25,11 @@ class TvDetailsBloc extends Bloc<TvDetailsEvent, TvDetailsState> {
     on<RemoveAllTvsFromWatchlistEvent>(removeAllTvsFromWatchlist);
     on<IsTvAddedToWatchlistEvent>(_isTvAddedToWatchlist);
     on<GetTvSeasonEpisodesEvent>(getTvSeasonEpisodes);
-    on<ChangeTabBarIndexEvent>(changeTabBarIndex);
   }
 
   bool _isAddedToWatchlist = false;
 
   bool get isAddedToWatchlist => _isAddedToWatchlist;
-  int _tabIndex = 0;
-
-  int get tabIndex => _tabIndex;
 
   Future<FutureOr<void>> getTvDetails(
       GetTvDetailsEvent event, Emitter<TvDetailsState> emit) async {
@@ -146,11 +143,5 @@ class TvDetailsBloc extends Bloc<TvDetailsEvent, TvDetailsState> {
         await IsTvAddedToWatchlistUseCase(di<TvRepository>()).call(event.tvId);
     _isAddedToWatchlist = result;
     emit(state.copyWith(isTvAddedToWatchlist: result));
-  }
-
-  Future<FutureOr<void>> changeTabBarIndex(
-      ChangeTabBarIndexEvent event, Emitter<TvDetailsState> emit) async {
-    _tabIndex = event.index;
-    emit(state.copyWith());
   }
 }

@@ -25,6 +25,9 @@ class TvDetailsState extends Equatable {
   final String removeAllTvsFromWatchlist;
   final String removeAllTvsFromWatchlistMessage;
   final RequestStates removeAllTvsFromWatchlistStates;
+  final List<TvDetailsEntity> getAllTvsFromWatchlist;
+  final String getAllTvsFromWatchlistMessage;
+  final RequestStates getAllTvsFromWatchlistStates;
   final bool isTvAddedToWatchlist;
 
   const TvDetailsState({
@@ -46,6 +49,9 @@ class TvDetailsState extends Equatable {
     this.removeAllTvsFromWatchlist = AppConstants.empty,
     this.removeAllTvsFromWatchlistMessage = AppConstants.empty,
     this.removeAllTvsFromWatchlistStates = RequestStates.loading,
+    this.getAllTvsFromWatchlist = const [],
+    this.getAllTvsFromWatchlistMessage = AppConstants.empty,
+    this.getAllTvsFromWatchlistStates = RequestStates.loading,
     this.isTvAddedToWatchlist = false,
   });
 
@@ -68,6 +74,9 @@ class TvDetailsState extends Equatable {
     String? removeAllTvsFromWatchlist,
     String? removeAllTvsFromWatchlistMessage,
     RequestStates? removeAllTvsFromWatchlistStates,
+    List<TvDetailsEntity>? getAllTvsFromWatchlist,
+    String?getAllTvsFromWatchlistMessage,
+    RequestStates? getAllTvsFromWatchlistStates,
     bool? isTvAddedToWatchlist,
   }) {
     return TvDetailsState(
@@ -101,6 +110,12 @@ class TvDetailsState extends Equatable {
           this.removeAllTvsFromWatchlistMessage,
       removeAllTvsFromWatchlistStates: removeAllTvsFromWatchlistStates ??
           this.removeAllTvsFromWatchlistStates,
+      getAllTvsFromWatchlist:
+          getAllTvsFromWatchlist ?? this.getAllTvsFromWatchlist,
+      getAllTvsFromWatchlistMessage:
+          getAllTvsFromWatchlistMessage ?? this.getAllTvsFromWatchlistMessage,
+      getAllTvsFromWatchlistStates:
+          getAllTvsFromWatchlistStates ?? this.getAllTvsFromWatchlistStates,
       isTvAddedToWatchlist: isTvAddedToWatchlist ?? this.isTvAddedToWatchlist,
     );
   }
@@ -125,6 +140,9 @@ class TvDetailsState extends Equatable {
         removeAllTvsFromWatchlist,
         removeAllTvsFromWatchlistMessage,
         removeAllTvsFromWatchlistStates,
+        getAllTvsFromWatchlist,
+        getAllTvsFromWatchlistMessage,
+        getAllTvsFromWatchlistStates,
         isTvAddedToWatchlist,
       ];
 }

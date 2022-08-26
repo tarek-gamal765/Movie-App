@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/global/lib/presentation/common_widgets/bottom_sheet_details.dart';
-import 'package:movie_app/core/global/lib/presentation/common_widgets/card_item.dart';
+import 'package:movie_app/core/global/lib/presentation/common_widgets/image_item.dart';
 import 'package:movie_app/core/global/lib/presentation/common_widgets/loading_widget.dart';
 import 'package:movie_app/core/utils/enums.dart';
 import 'package:movie_app/core/utils/values_manager.dart';
@@ -30,7 +30,7 @@ class PopularTvsComponent extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return const Padding(
-                  padding: EdgeInsets.only(right: AppPadding.p10),
+                  padding: EdgeInsets.only(right: AppPadding.p8),
                   child: LoadingWidget(
                     height: AppSize.s160,
                     width: AppSize.s120,
@@ -44,27 +44,33 @@ class PopularTvsComponent extends StatelessWidget {
               itemCount: state.popularTvs.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () {
-                    showBottomSheetDetails(
-                      context: context,
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    right: AppPadding.p8,
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      showBottomSheetDetails(
+                        context: context,
+                        imageUrl:
+                            Urls.imageUrl(state.popularTvs[index].posterPath),
+                        title: state.popularTvs[index].name,
+                        overview: state.popularTvs[index].overview,
+                        releaseDate: state.popularTvs[index].firstAirDate,
+                        voteAverage: state.popularTvs[index].voteAverage,
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pushNamed(
+                            Routes.tvDetailsRoute,
+                            arguments: state.popularTvs[index].id,
+                          );
+                        },
+                      );
+                    },
+                    child: ImageItem(
                       imageUrl:
                           Urls.imageUrl(state.popularTvs[index].posterPath),
-                      title: state.popularTvs[index].name,
-                      overview: state.popularTvs[index].overview,
-                      releaseDate: state.popularTvs[index].firstAirDate,
-                      voteAverage: state.popularTvs[index].voteAverage,
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        Navigator.of(context).pushNamed(
-                          Routes.tvDetailsRoute,
-                          arguments: state.popularTvs[index].id,
-                        );
-                      },
-                    );
-                  },
-                  child: CardItem(
-                    imageUrl: Urls.imageUrl(state.popularTvs[index].posterPath),
+                    ),
                   ),
                 );
               });

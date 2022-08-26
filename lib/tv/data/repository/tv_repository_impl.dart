@@ -137,9 +137,8 @@ class TvRepositoryImpl implements TvRepository {
   @override
   Future<Either<Failure, List<TvDetailsEntity>>> getTvsFromWatchlist() async {
     final response = await _tvLocalDataSource.getTvsFromWatchlist();
-
     try {
-      return Right(List.from(response.map((e) => TvTableModel.formEntity(e))));
+      return Right(response);
     } on DatabaseException catch (failure) {
       return Left(
         DatabaseFailure(failure.errorModel.statusMessage),

@@ -11,6 +11,7 @@ import 'package:movie_app/tv/domain/repository/tv_repository.dart';
 import 'package:movie_app/tv/domain/usecases/get_recommendation_tvs_usecase.dart';
 import 'package:movie_app/tv/domain/usecases/get_tv_details_usecase.dart';
 import 'package:movie_app/tv/domain/usecases/get_tv_season_episode_usecase.dart';
+import 'package:movie_app/tv/domain/usecases/get_tvs_from_watchlist_usecase.dart';
 import 'package:movie_app/tv/domain/usecases/insert_tv_to_watchlist_usecase.dart';
 import 'package:movie_app/tv/domain/usecases/is_tv_added_to_watchlist_usecase.dart';
 import 'package:movie_app/tv/domain/usecases/remove_tv_by_id_from_watchlist_usecase.dart';
@@ -32,6 +33,9 @@ import 'package:movie_app/movie/domain/usecases/get_recommendation_movies_usecas
 import 'package:movie_app/movie/domain/usecases/get_top_rated_movies_usecase.dart';
 import 'package:movie_app/movie/presentation/blocs/movie_details_bloc.dart';
 import 'package:movie_app/movie/presentation/blocs/movies_bloc.dart';
+import 'package:movie_app/tv/presentation/blocs/tv_watchlist_bloc.dart';
+
+import 'movie/presentation/blocs/movie_watchlist_bloc.dart';
 
 final di = GetIt.instance;
 
@@ -42,6 +46,8 @@ void init() {
   di.registerFactory(() => MovieDetailsBloc());
   di.registerFactory(() => TvsBloc());
   di.registerFactory(() => TvDetailsBloc());
+  di.registerFactory(() => TvWatchlistBloc());
+  di.registerFactory(() => MovieWatchlistBloc());
 
   //data source
   di.registerLazySingleton<MovieRemoteDataSource>(
@@ -163,6 +169,11 @@ void init() {
   );
   di.registerLazySingleton<GetTvSeasonEpisodesUseCase>(
     () => GetTvSeasonEpisodesUseCase(
+      di<TvRepository>(),
+    ),
+  );
+  di.registerLazySingleton<GetTvsFromWatchlistUseCase>(
+    () => GetTvsFromWatchlistUseCase(
       di<TvRepository>(),
     ),
   );

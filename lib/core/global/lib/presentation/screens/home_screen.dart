@@ -123,13 +123,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (context) => Test()));
-                                      // Navigator.pushNamed(
-                                      //   context,
-                                      //   state.typeState ==
-                                      //           GeneralContentStates.movie
-                                      //       ? Routes.mainMovieRoute
-                                      //       : Routes.mainTvRoute,
-                                      // );
                                     },
                                   );
                                 },

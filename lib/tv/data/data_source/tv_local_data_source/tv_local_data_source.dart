@@ -55,6 +55,7 @@ class TvLocalDataSourceImpl implements TvLocalDataSource {
   Future<List<TvTableModel>> getTvsFromWatchlist() async {
     try {
       final result = await _tvDatabaseHelper.getTvsFromWatchlist();
+      print('result :::: $result');
       return result.map((e) => TvTableModel.formJson(e)).toList();
     } on DatabaseException catch (e) {
       throw DatabaseException(e.errorModel);

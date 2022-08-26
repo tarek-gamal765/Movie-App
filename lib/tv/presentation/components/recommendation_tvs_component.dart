@@ -1,7 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/global/lib/presentation/common_widgets/bottom_sheet_details.dart';
-import 'package:movie_app/core/global/lib/presentation/common_widgets/card_item.dart';
+import 'package:movie_app/core/global/lib/presentation/common_widgets/image_item.dart';
 import 'package:movie_app/core/utils/app_constants.dart';
 import 'package:movie_app/core/utils/urls.dart';
 import 'package:movie_app/core/utils/values_manager.dart';
@@ -47,7 +47,7 @@ class RecommendationTvsComponent extends StatelessWidget {
                     },
                   );
                 },
-                child: CardItem(
+                child: ImageItem(
                   imageUrl: recommendationList[index].posterPath != null
                       ? Urls.imageUrl(recommendationList[index].posterPath!)
                       : AppConstants.defaultImage,

@@ -59,6 +59,7 @@ class RemoveAllTvsFromWatchlistEvent extends TvDetailsEvent {
   List<Object?> get props => [];
 }
 
+
 class IsTvAddedToWatchlistEvent extends TvDetailsEvent {
   final int tvId;
 
@@ -66,12 +67,4 @@ class IsTvAddedToWatchlistEvent extends TvDetailsEvent {
 
   @override
   List<Object?> get props => [tvId];
-}
-class ChangeTabBarIndexEvent extends TvDetailsEvent {
-  final int index;
-
-  const ChangeTabBarIndexEvent(this.index);
-
-  @override
-  List<Object?> get props => [index];
 }

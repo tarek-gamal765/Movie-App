@@ -5,7 +5,7 @@ import 'package:movie_app/core/utils/app_constants.dart';
 import 'package:movie_app/core/utils/enums.dart';
 import 'package:movie_app/core/utils/routes.dart';
 
-import 'package:movie_app/core/global/lib/presentation/common_widgets/popular_and_top_rated_item.dart';
+import 'package:movie_app/core/global/lib/presentation/common_widgets/card_item.dart';
 import '../../../core/global/styles/app_colors/app_colors_dark.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../../core/utils/urls.dart';
@@ -46,7 +46,7 @@ class TopRatedMoviesScreen extends StatelessWidget {
                       Routes.movieDetailsRoute,
                       arguments: state.topRatedMovies[index].id,
                     ),
-                    child: PopularAndTopRatedItem(
+                    child: CardItem(
                       imageUrl:
                           Urls.imageUrl(state.topRatedMovies[index].posterPath),
                       title: state.topRatedMovies[index].title,

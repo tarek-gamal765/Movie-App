@@ -25,16 +25,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
+        BlocProvider<AppBloc>(
           create: (context) => di<AppBloc>(),
         ),
-        BlocProvider(
+        BlocProvider<MovieBloc>(
           create: (context) => di<MovieBloc>()
             ..add(GetNowPlayingMoviesEvent())
             ..add(GetPopularMoviesEvent())
             ..add(GetTopRatedMoviesEvent()),
         ),
-        BlocProvider(
+        BlocProvider<TvsBloc>(
           create: (context) => di<TvsBloc>()
             ..add(GetNowPlayingTvsEvent())
             ..add(GetPopularTvsEvent())

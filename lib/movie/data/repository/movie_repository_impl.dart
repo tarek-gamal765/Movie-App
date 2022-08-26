@@ -66,8 +66,8 @@ class MovieRepositoryImpl implements MovieRepository {
   }
 
   @override
-  Future<Either<Failure, List<RecommendationMovieEntity>>> getRecommendationMovies(
-      int movieId) async {
+  Future<Either<Failure, List<RecommendationMovieEntity>>>
+      getRecommendationMovies(int movieId) async {
     final response =
         await _movieRemoteDataSource.getRecommendationMovies(movieId);
     try {
@@ -115,8 +115,7 @@ class MovieRepositoryImpl implements MovieRepository {
     final response = await _movieLocalDataSource.getMoviesFromWatchlist();
 
     try {
-      return Right(
-          List.from(response.map((e) => MovieTableModel.formEntity(e))));
+      return Right(response);
     } on DatabaseException catch (failure) {
       return Left(
         DatabaseFailure(failure.errorModel.statusMessage),
