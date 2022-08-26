@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/global/lib/presentation/common_widgets/drawer_widget.dart';
 import 'package:movie_app/core/global/styles/app_colors/app_colors_dark.dart';
 import 'package:movie_app/core/utils/enums.dart';
+import 'package:movie_app/core/utils/routes.dart';
 import 'package:movie_app/core/utils/values_manager.dart';
 import 'package:movie_app/movie/presentation/screens/main_movies.dart';
-import 'package:movie_app/test.dart';
 import 'package:movie_app/tv/presentation/screens/main_tvs.dart';
 
+import '../../../../../search/presentation/screens/movie_search.dart';
 import '../../../../utils/app_constants.dart';
 import '../../../../utils/app_strings.dart';
 import '../bloc/app_bloc.dart';
@@ -120,9 +121,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                     icon: const Icon(Icons.search),
                                     splashRadius: AppSize.s20,
                                     onPressed: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) => Test()));
+                                      Navigator.of(context).pushNamed(
+                                        state.typeState ==
+                                                GeneralContentStates.movie
+                                            ? Routes.searchMovieRoute
+                                            : Routes.searchTvRoute,
+                                      );
                                     },
                                   );
                                 },

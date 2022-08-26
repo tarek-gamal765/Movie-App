@@ -22,6 +22,5 @@ abstract class MovieRepository {
   Future<Either<Failure, String>> removeMovieFromWatchlist(MovieDetailsEntity movie);
   Future<Either<Failure, List<MovieDetailsEntity>>> getMoviesFromWatchlist();
   Future<bool> isMovieAddedToWatchlist(int id);
-
-
+  Future<Either<Failure, List<MovieEntity>>> searchMovie(String query);
 }

@@ -5,6 +5,7 @@ import 'package:movie_app/core/global/lib/presentation/screens/home_screen.dart'
 import 'package:movie_app/core/global/styles/themes/dark_theme.dart';
 import 'package:movie_app/core/utils/routes.dart';
 import 'package:movie_app/dependency_injection.dart' as dependency;
+import 'package:movie_app/search/presentation/blocs/search_bloc.dart';
 import 'package:movie_app/tv/presentation/blocs/Tvs_bloc.dart';
 import 'package:movie_app/tv/presentation/blocs/tvs_event.dart';
 
@@ -39,6 +40,9 @@ class MyApp extends StatelessWidget {
             ..add(GetNowPlayingTvsEvent())
             ..add(GetPopularTvsEvent())
             ..add(GetTopRatedTvsEvent()),
+        ),
+        BlocProvider<SearchBloc>(
+          create: (context) => SearchBloc(),
         ),
       ],
       child: MaterialApp(

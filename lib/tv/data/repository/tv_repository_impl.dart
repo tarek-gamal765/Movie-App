@@ -151,4 +151,16 @@ class TvRepositoryImpl implements TvRepository {
     final response = await _tvLocalDataSource.getTvByIdFromWatchlist(id);
     return response != null;
   }
+
+  @override
+  Future<Either<Failure, List<TvEntity>>> searchTv(String query) async {
+    final response = await _tvRemoteDataSource.searchTv(query);
+    try {
+      return Right(response);
+    } on ServerException catch (failure) {
+      return Left(
+        ServerFailure(failure.errorModel.statusMessage),
+      );
+    }
+  }
 }

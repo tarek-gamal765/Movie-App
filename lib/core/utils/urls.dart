@@ -20,6 +20,8 @@ class Urls {
 
   static String recommendationMoviesUrl(int movieId) =>
       '$baseUrl/movie/$movieId/recommendations$apiKey$langUrl';
+  static String movieSearch( String query) =>
+      '$baseUrl/search/movie$apiKey&query=$query';
 
   // tvs urls
   static const String onTheAirTvsUrl = '$baseUrl/tv/on_the_air$apiKey$langUrl';
@@ -31,5 +33,6 @@ class Urls {
       '$baseUrl/tv/$movieId/recommendations$apiKey$langUrl';
   static String tvSeasons(int id, int seasonNumber) =>
       '$baseUrl/tv/$id/season/$seasonNumber$apiKey';
-  // https://api.themoviedb.org/3/tv/94997/season/2?api_key=aa2cd5c1310491c1605d2152228a72da
+  static String tvSearch( String query) =>
+      '$baseUrl/search/tv$apiKey&query=$query';
 }

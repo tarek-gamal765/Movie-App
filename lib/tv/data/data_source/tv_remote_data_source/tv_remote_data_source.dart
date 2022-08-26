@@ -21,6 +21,7 @@ abstract class TvRemoteDataSource {
 
   Future<List<TvSeasonEpisodeModel>> getTvSeasonEpisodes(
       int tvId, int seasonNumber);
+  Future< List<TvModel>> searchTv(String query);
 }
 
 class TvRemoteDataSourceImpl implements TvRemoteDataSource {
@@ -99,6 +100,20 @@ class TvRemoteDataSourceImpl implements TvRemoteDataSource {
         (response.data['episodes'] as List)
             .map((x) => TvSeasonEpisodeModel.fromJson(x))
             .where((element) => element.stillPath != null),
+      );
+    } else {
+      throw ServerException(response.data);
+    }
+  }
+
+  @override
+  Future<List<TvModel>> searchTv(String query) async {
+    final response = await Dio().get(Urls.tvSearch(query));
+    if (response.statusCode == AppConstants.successCode) {
+      return List<TvModel>.from(
+        (response.data['results'] as List).map(
+              (element) => TvModel.formJson(element),
+        ),
       );
     } else {
       throw ServerException(response.data);

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/core/global/lib/presentation/screens/home_screen.dart';
 import 'package:movie_app/movie/presentation/screens/popular_movies.dart';
 import 'package:movie_app/movie/presentation/screens/top_rated_movies.dart';
+import 'package:movie_app/search/presentation/screens/movie_search.dart';
+import 'package:movie_app/search/presentation/screens/tv_search.dart';
 import 'package:movie_app/tv/presentation/screens/main_tvs.dart';
 import 'package:movie_app/tv/presentation/screens/popular_tvs.dart';
 import 'package:movie_app/tv/presentation/screens/top_rated_tvs.dart';
@@ -22,6 +24,8 @@ class Routes {
   static const String popularTvsRoute = '/popularTvs';
   static const String topRatedTvsRoute = '/topRatedTvs';
   static const String watchlistRoute = '/watchlist';
+  static const String searchTvRoute = '/searchTv';
+  static const String searchMovieRoute = '/searchMovie';
 }
 
 class RouteGenerator {
@@ -51,6 +55,10 @@ class RouteGenerator {
                 TvDetailsScreen(id: routeSettings.arguments as int));
       case Routes.watchlistRoute:
         return MaterialPageRoute(builder: (_) => const WatchlistScreen());
+      case Routes.searchMovieRoute:
+        return MaterialPageRoute(builder: (_) => const MovieSearchScreen());
+      case Routes.searchTvRoute:
+        return MaterialPageRoute(builder: (_) => const TvSearchScreen());
       default:
         return unDefinedRoute();
     }

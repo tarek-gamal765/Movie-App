@@ -16,6 +16,8 @@ abstract class MovieRemoteDataSource {
   Future<MovieDetailsModel> getMovieDetails(int movieId);
 
   Future<List<RecommendationMovieModel>> getRecommendationMovies(int movieId);
+
+  Future<List<MovieModel>> searchMovie(String query);
 }
 
 class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
@@ -79,6 +81,20 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
       return List<RecommendationMovieModel>.from(
         (response.data['results'] as List).map(
           (e) => RecommendationMovieModel.fromJson(e),
+        ),
+      );
+    } else {
+      throw ServerException(response.data);
+    }
+  }
+
+  @override
+  Future<List<MovieModel>> searchMovie(String query) async {
+    final response = await Dio().get(Urls.movieSearch(query));
+    if (response.statusCode == AppConstants.successCode) {
+      return List<MovieModel>.from(
+        (response.data['results'] as List).map(
+          (element) => MovieModel.formJson(element),
         ),
       );
     } else {

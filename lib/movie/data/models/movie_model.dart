@@ -5,7 +5,6 @@ class MovieModel extends MovieEntity {
   const MovieModel({
     required super.id,
     required super.genreIds,
-    required super.backdropPath,
     required super.overview,
     required super.posterPath,
     required super.title,
@@ -17,9 +16,8 @@ class MovieModel extends MovieEntity {
   factory MovieModel.formJson(Map<String, dynamic> json) => MovieModel(
         id: json['id'],
         genreIds: json['genre_ids'],
-        backdropPath: json['backdrop_path'],
         overview: json['overview'],
-        posterPath: Urls.imageUrl(json['poster_path']),
+        posterPath: json['poster_path'],
         title: json['title'],
         releaseDate: json['release_date'],
         voteAverage: json['vote_average'].toDouble(),

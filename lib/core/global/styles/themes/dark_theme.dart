@@ -18,6 +18,22 @@ ThemeData darkTheme() => ThemeData(
         color: AppColorsDark.darkGreyColor,
         thickness: AppSize.s1,
       ),
+      inputDecorationTheme: const InputDecorationTheme(
+        focusedErrorBorder: UnderlineInputBorder(
+            borderSide: BorderSide(width: 0.7, color: AppColorsDark.redColor)),
+        focusedBorder: UnderlineInputBorder(
+            borderSide:
+                BorderSide(width: 0.5, color: AppColorsDark.lightGreyColor)),
+        enabledBorder: UnderlineInputBorder(
+            borderSide:
+                BorderSide(width: 2.0, color: AppColorsDark.lightGreyColor)),
+        border: UnderlineInputBorder(
+            borderSide:
+                BorderSide(width: 2.0, color: AppColorsDark.primaryColor)),
+        disabledBorder: UnderlineInputBorder(
+            borderSide:
+                BorderSide(width: 2.0, color: AppColorsDark.lightGreyColor)),
+      ),
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColorsDark.transparentColor,
         elevation: AppSize.s0,

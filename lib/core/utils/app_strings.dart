@@ -40,4 +40,6 @@ class AppStrings {
   static const String episodes = 'EPISODES';
   static const String season = 'Season';
   static const String comingSoon = 'Coming Soon!';
+  static const String searchMovies = 'Search movies';
+  static const String searchTvs = 'Search tvs show';
 }

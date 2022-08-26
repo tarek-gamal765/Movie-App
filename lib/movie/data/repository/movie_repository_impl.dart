@@ -128,4 +128,16 @@ class MovieRepositoryImpl implements MovieRepository {
     final response = await _movieLocalDataSource.getMovieByIdFromWatchlist(id);
     return response != null;
   }
+
+  @override
+  Future<Either<Failure, List<MovieEntity>>> searchMovie(String query) async {
+    final response = await _movieRemoteDataSource.searchMovie(query);
+    try {
+      return Right(response);
+    } on ServerException catch (failure) {
+      return Left(
+        ServerFailure(failure.errorModel.statusMessage),
+      );
+    }
+  }
 }
