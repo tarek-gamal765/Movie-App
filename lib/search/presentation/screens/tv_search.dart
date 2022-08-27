@@ -7,6 +7,7 @@ import 'package:movie_app/search/presentation/components/text_form_field_compone
 
 import '../../../core/utils/app_strings.dart';
 import '../../../core/utils/enums.dart';
+import '../../../core/utils/urls.dart';
 import '../blocs/search_bloc.dart';
 import '../blocs/search_event.dart';
 import '../blocs/search_state.dart';
@@ -47,7 +48,7 @@ class TvSearchScreen extends StatelessWidget {
                     overview: state.searchTvs[index].overview,
                     releaseDate: state.searchTvs[index].firstAirDate,
                     voteAverage: state.searchTvs[index].voteAverage,
-                    imageUrl: state.searchTvs[index].posterPath,
+                    imageUrl: Urls.imageUrl(state.searchTvs[index].posterPath),
                     title: state.searchTvs[index].name,
                     color: AppColorsDark.lightBlackColor,
                   ),

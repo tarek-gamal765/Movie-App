@@ -49,7 +49,8 @@ class TopRatedTvsScreen extends StatelessWidget {
                     },
                     child: CardItem(
                       imageUrl:
-                          Urls.imageUrl(state.topRatedTvs[index].posterPath),
+                          Urls.imageUrl(state.topRatedTvs[index].posterPath)
+                         ,
                       title: state.topRatedTvs[index].name,
                       overview: state.topRatedTvs[index].overview,
                       releaseDate: state.topRatedTvs[index].firstAirDate,

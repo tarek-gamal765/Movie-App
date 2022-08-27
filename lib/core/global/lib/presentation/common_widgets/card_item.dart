@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/utils/urls.dart';
 
 import '../../../../utils/values_manager.dart';
 import '../../../styles/app_colors/app_colors_dark.dart';
@@ -38,7 +37,7 @@ class CardItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ImageItem(imageUrl: Urls.imageUrl(imageUrl)),
+          ImageItem(imageUrl: imageUrl),
           const SizedBox(width: AppSize.s10),
           Expanded(
             child: Column(

@@ -8,7 +8,6 @@ import 'package:movie_app/core/utils/values_manager.dart';
 import 'package:movie_app/movie/presentation/screens/main_movies.dart';
 import 'package:movie_app/tv/presentation/screens/main_tvs.dart';
 
-import '../../../../../search/presentation/screens/movie_search.dart';
 import '../../../../utils/app_constants.dart';
 import '../../../../utils/app_strings.dart';
 import '../bloc/app_bloc.dart';

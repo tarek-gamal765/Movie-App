@@ -47,8 +47,8 @@ class PopularTvsScreen extends StatelessWidget {
                       arguments: state.popularTvs[index].id,
                     ),
                     child: CardItem(
-                      imageUrl:
-                          Urls.imageUrl(state.popularTvs[index].posterPath),
+                      imageUrl: Urls.imageUrl(state.popularTvs[index].posterPath)
+                        ,
                       title: state.popularTvs[index].name,
                       overview: state.popularTvs[index].overview,
                       releaseDate: state.popularTvs[index].firstAirDate,
